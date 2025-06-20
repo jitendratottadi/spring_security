@@ -29,7 +29,6 @@ public class RoleModel {
 		this.rolename = rolename;
 	}
 	public RoleModel(int id, String rolename) {
-		super();
 		this.id = id;
 		this.rolename = rolename;
 	}
@@ -37,6 +36,19 @@ public class RoleModel {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public RoleModel(int id) {
+		this.id=id;
+	}
+	
+	public RoleModel(String rolename) {
+		this.rolename=rolename;
+	}
+	
+//	public RoleModel(int id, String rolename) {
+//		this.id=id;
+//		this.rolename=rolename;
+//	}
+	
 	@Override
 	public String toString() {
 		return "RoleModel [id=" + id + ", rolename=" + rolename + "]";
