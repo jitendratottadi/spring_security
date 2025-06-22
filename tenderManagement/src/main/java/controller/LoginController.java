@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,14 +30,16 @@ public class LoginController {
 	@Autowired
 	private JWTUtil jwtUtil;
 	
+	
+	@PostMapping("/login")
 	public ResponseEntity<Object> authenticatUser(@RequestBody LoginDTO loginDTO){
 		try {
 			authenticationManager.authenticate(
 					new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword()));
 			
-			UserDetails userDetails=LoginService.loadUserByUsername(loginDTO.getEmail());
+			UserDetails userDetails=loginService.loadUserByUsername(loginDTO.getEmail());
 			
-			String jwt=JWTUtil.generateToken(userDetails);
+			String jwt=jwtUtil.generateToken(username);
 			
 			Map<String, Object> response= new HashMap<>();
 			response.put("jwt", jwt);
