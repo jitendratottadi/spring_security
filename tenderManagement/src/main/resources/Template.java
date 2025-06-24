@@ -186,6 +186,7 @@ public class UserService {
     public UserModel findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+    
 }
 
 
